@@ -1,0 +1,51 @@
+@import 'src/styles/variables';
+
+.table-container {
+  overflow-x: auto;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+.table__header {
+  font-weight: 600;
+  color: $primary-text;
+  position: relative;
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid $border-color;
+}
+
+.table__header-sort {
+  position: absolute;
+  right: 8px;
+  opacity: 0.6;
+}
+
+.table__cell {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid $border-color;
+}
+
+.table__row {
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+.table__row:nth-child(2n) {
+  background-color: $background-color-2;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}

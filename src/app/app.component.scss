@@ -1,0 +1,13 @@
+@import 'src/styles/variables';
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: $text-color;
+
+  h1 {
+    color: $primary-text;
+    margin-bottom: 20px;
+  }
+}
