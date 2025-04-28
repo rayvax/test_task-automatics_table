@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl = 'https://jsonplaceholder.typicode.com';
+  private readonly baseUrl = 'https://jsonplaceholder.typicode.com';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
-  getAll(): Observable<User[]> {
+  getUsers$(): Observable<User[]> {
+    //если возвращаем поток то добавляем постфикс $
     return this.http.get<User[]>(`${this.baseUrl}/users`);
   }
 }

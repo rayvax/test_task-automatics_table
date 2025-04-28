@@ -5,13 +5,12 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './components/table/table.component';
 import { SearchComponent } from './components/search/search.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { HasValuePipe } from './pipes/has-value.pipe';
-import { SortByFieldPipe } from './pipes/sort-by-field.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TransformPipe } from './pipes/transform.pipe';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, SearchComponent, HasValuePipe, SortByFieldPipe],
-  imports: [BrowserModule, HttpClientModule, FormsModule],
+  declarations: [AppComponent, TableComponent, SearchComponent, TransformPipe],
+  imports: [BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

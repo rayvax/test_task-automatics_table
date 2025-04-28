@@ -1,21 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { User } from '@model/user';
 import { UserService } from '@services/user.service';
-import { Observable } from 'rxjs';
+import { combineLatest, map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
-  public title = 'automatics test task';
-  public users$: Observable<User[]>;
-  public userFilter = '';
+export class AppComponent {
+  readonly searchForm = new FormControl('');
+  readonly title = 'automatics test task';
+  private readonly users$: Observable<User[]> = this.userService.getUsers$();
+  readonly filteredData$: Observable<User[]> = this.getFilteredData$();
 
-  constructor(private userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
-  ngOnInit(): void {
-    this.users$ = this.userService.getAll();
+  getFilteredData$(): Observable<User[]> {
+    return combineLatest([this.users$, this.searchForm.valueChanges.pipe(startWith(''))]).pipe(
+      map(([users, filter]) =>
+        users.filter((item) => {
+          return Object.values(item).some((value) => {
+            // const stringValue = typeof value === 'string' ? value : String(value); //Упрощаем String(value)
+
+            return String(value).toLocaleLowerCase().includes(filter.toLocaleLowerCase());
+          });
+        }),
+      ),
+    );
   }
 }

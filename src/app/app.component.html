@@ -1,7 +1,11 @@
 <div class="app">
   <h1>{{ title | titlecase }}</h1>
 
-  <app-search [(searchText)]="userFilter"></app-search>
+  <app-search [formControl]="searchForm"></app-search>
 
-  <app-table [headers]="['id', 'name', 'email', 'phone']" [data$]="users$" [filter]="userFilter"></app-table>
+  <app-table
+    *ngIf="filteredData$ | async as data"
+    [headers]="['id', 'Имя', 'Почта', 'Телефон']"
+    [data]="data | transform"
+  ></app-table>
 </div>

@@ -2,40 +2,21 @@
   <table class="table">
     <thead>
       <tr class="table__row">
-        <th *ngFor="let header of headers" class="table__header" (click)="onSort(header)">
+        <th *ngFor="let header of headers; let index = index" class="table__header" (click)="onSort(index)">
           {{ header }}
-          <span class="table__header-sort" *ngIf="sort?.column === header">
-            {{ sort?.direction === 'asc' ? '↑' : '↓' }}
+          <span class="table__header-sort" *ngIf="sort?.column === index">
+            {{ sortToArrowMap.get(sort?.direction!) }}
           </span>
         </th>
       </tr>
     </thead>
-    <ng-container *ngIf="data$ | async as data">
-      <tbody>
-        <ng-container *ngIf="sort; else noSort">
-          <ng-container
-            *ngTemplateOutlet="
-              tableRows;
-              context: {
-                rowData: data | hasValue : filter | sortByField : sort.column : sort.direction
-              }
-            "
-          ></ng-container>
-        </ng-container>
-        <ng-template #noSort>
-          <ng-container *ngTemplateOutlet="tableRows; context: { rowData: data | hasValue : filter }"></ng-container>
-        </ng-template>
-      </tbody>
-    </ng-container>
+
+    <tbody>
+      <tr class="table__row" *ngFor="let row of sortedData$ | async">
+        <td *ngFor="let cell of row" class="table__cell">
+          {{ cell }}
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
-
-<ng-template #tableRows let-rowData="rowData">
-  <ng-container *ngFor="let item of rowData">
-    <tr class="table__row">
-      <td *ngFor="let header of headers" class="table__cell">
-        {{ item[header] }}
-      </td>
-    </tr>
-  </ng-container>
-</ng-template>
