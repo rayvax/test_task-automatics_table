@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filterByField',
+  name: 'hasValue',
 })
-export class FilterByFieldPipe implements PipeTransform {
+export class HasValuePipe implements PipeTransform {
   transform<T extends object>(arrayToFilter: T[], filterText: string): T[] {
     if (!filterText) {
       return arrayToFilter;

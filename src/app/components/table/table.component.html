@@ -17,15 +17,13 @@
             *ngTemplateOutlet="
               tableRows;
               context: {
-                rowData: data | filterByField : filter | sortByField : sort.column : sort.direction
+                rowData: data | hasValue : filter | sortByField : sort.column : sort.direction
               }
             "
           ></ng-container>
         </ng-container>
         <ng-template #noSort>
-          <ng-container
-            *ngTemplateOutlet="tableRows; context: { rowData: data | filterByField : filter }"
-          ></ng-container>
+          <ng-container *ngTemplateOutlet="tableRows; context: { rowData: data | hasValue : filter }"></ng-container>
         </ng-template>
       </tbody>
     </ng-container>

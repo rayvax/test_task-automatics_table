@@ -6,11 +6,11 @@ import { TableComponent } from './components/table/table.component';
 import { SearchComponent } from './components/search/search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { FilterByFieldPipe } from './pipes/filter-by-field.pipe';
+import { HasValuePipe } from './pipes/has-value.pipe';
 import { SortByFieldPipe } from './pipes/sort-by-field.pipe';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, SearchComponent, FilterByFieldPipe, SortByFieldPipe],
+  declarations: [AppComponent, TableComponent, SearchComponent, HasValuePipe, SortByFieldPipe],
   imports: [BrowserModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
