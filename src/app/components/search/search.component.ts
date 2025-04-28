@@ -16,4 +16,9 @@ export class SearchComponent implements OnInit {
   onSearchChange() {
     this.searchTextChange.emit(this.searchText);
   }
+
+  onClear() {
+    this.searchText = '';
+    this.onSearchChange();
+  }
 }

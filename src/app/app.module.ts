@@ -7,9 +7,10 @@ import { SearchComponent } from './components/search/search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { FilterByFieldPipe } from './pipes/filter-by-field.pipe';
+import { SortByFieldPipe } from './pipes/sort-by-field.pipe';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, SearchComponent, FilterByFieldPipe],
+  declarations: [AppComponent, TableComponent, SearchComponent, FilterByFieldPipe, SortByFieldPipe],
   imports: [BrowserModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
