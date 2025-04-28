@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { mockUsers } from '@data/users';
-import { User } from '@model/user';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit {
-  public headers: (keyof User)[] = ['id', 'name', 'email', 'phone'];
-  public data: User[] = mockUsers;
+export class TableComponent<T extends object> implements OnInit {
+  @Input() public headers: (keyof T)[];
+  @Input() public data$: Observable<T[]>;
+  @Input() public filter: { text: string; field: keyof T } = { text: '', field: '' as keyof T };
 
   constructor() {}
 

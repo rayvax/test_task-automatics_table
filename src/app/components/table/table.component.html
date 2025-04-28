@@ -3,17 +3,19 @@
     <thead>
       <tr class="table__row">
         <th *ngFor="let header of headers" class="table__header">
-          {{ header | titlecase }}
+          {{ header }}
           <span class="table__header-sort">↑</span>
         </th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let user of data" class="table__row">
-        <td *ngFor="let header of headers" class="table__cell">
-          {{ user[header] }}
-        </td>
-      </tr>
-    </tbody>
+    <ng-container *ngIf="data$ | async as data">
+      <tbody>
+        <tr *ngFor="let item of data | filterByField : filter.text : filter.field" class="table__row">
+          <td *ngFor="let header of headers" class="table__cell">
+            {{ item[header] }}
+          </td>
+        </tr>
+      </tbody>
+    </ng-container>
   </table>
 </div>

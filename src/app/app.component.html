@@ -1,7 +1,11 @@
 <div class="app">
   <h1>{{ title | titlecase }}</h1>
 
-  <app-search></app-search>
+  <app-search [(searchText)]="userFilter"></app-search>
 
-  <app-table></app-table>
+  <app-table
+    [headers]="['id', 'name', 'email', 'phone']"
+    [data$]="users$"
+    [filter]="{ text: userFilter, field: 'name' }"
+  ></app-table>
 </div>
