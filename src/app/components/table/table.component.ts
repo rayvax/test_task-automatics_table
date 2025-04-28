@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class TableComponent<T extends object> implements OnInit {
   @Input() public headers: (keyof T)[];
   @Input() public data$: Observable<T[]>;
-  @Input() public filter: { text: string; field: keyof T } = { text: '', field: '' as keyof T };
+  @Input() public filter = '';
 
   public sort: { direction: SortDirection; column: keyof T } | null = null;
 

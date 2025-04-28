@@ -3,9 +3,5 @@
 
   <app-search [(searchText)]="userFilter"></app-search>
 
-  <app-table
-    [headers]="['id', 'name', 'email', 'phone']"
-    [data$]="users$"
-    [filter]="{ text: userFilter, field: 'name' }"
-  ></app-table>
+  <app-table [headers]="['id', 'name', 'email', 'phone']" [data$]="users$" [filter]="userFilter"></app-table>
 </div>

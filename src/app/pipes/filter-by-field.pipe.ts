@@ -4,17 +4,17 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filterByField',
 })
 export class FilterByFieldPipe implements PipeTransform {
-  transform<T extends object, K extends keyof T>(value: T[], filterText: string, filterField: K): T[] {
+  transform<T extends object>(arrayToFilter: T[], filterText: string): T[] {
     if (!filterText) {
-      return value;
+      return arrayToFilter;
     }
 
-    return value.filter((v) => {
-      const fieldValue = v[filterField];
+    return arrayToFilter.filter((item) => {
+      return Object.values(item).some((value) => {
+        const stringValue = typeof value === 'string' ? value : String(value);
 
-      const stringValue = typeof fieldValue === 'string' ? fieldValue : String(fieldValue);
-
-      return stringValue.toLocaleLowerCase().includes(filterText.toLocaleLowerCase());
+        return stringValue.toLocaleLowerCase().includes(filterText.toLocaleLowerCase());
+      });
     });
   }
 }
